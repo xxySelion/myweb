@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李明 - 全栈开发工程师 | Li Ming - Full Stack Developer</title>
+    <meta name="description" content="李明 - 北京大学计算机科学专业应届毕业生，专注于全栈开发，热衷于用技术解决实际问题">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --accent-warm: #f97316;
+            --border: #e2e8f0;
+            --border-dark: #cbd5e1;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+
+            --font-display: 'Inter', 'Noto Sans SC', sans-serif;
+            --font-body: 'Noto Sans SC', 'Inter', sans-serif;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ========== Reset ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ========== Layout ========== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-alt {
+            background: var(--bg-secondary);
+        }
+
+        /* ========== Header ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition-base);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .header-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 8px 16px;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            padding: 8px;
+            color: var(--text-primary);
+        }
+
+        /* ========== Hero Section ========== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-info-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: var(--transition-base);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-tertiary) 100%);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-avatar svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-status {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .hero-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        /* ========== Section Header ========== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== Education Section ========== */
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .education-card {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 40px;
+            padding: 32px;
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: var(--transition-base);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .education-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .education-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .education-left {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .education-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 12px;
+            background: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .education-date {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .education-right {
+            flex: 1;
+        }
+
+        .education-school {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .education-degree {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .education-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .education-detail {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .education-detail svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--text-muted);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .education-courses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: var(--radius-full);
+        }
+
+        /* ========== Experience Section ========== */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .experience-item {
+            position: relative;
+            padding-left: 32px;
+            padding-bottom: 40px;
+            border-left: 2px solid var(--border);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .experience-item:last-child {
+            border-left-color: transparent;
+            padding-bottom: 0;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 28px;
+            transition: var(--transition-base);
+        }
+
+        .experience-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .experience-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .experience-company {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .experience-period {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .experience-period svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .experience-desc {
+            margin-bottom: 20px;
+        }
+
+        .experience-desc li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .experience-desc li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .experience-skills .tag {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        /* ========== Projects Section ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: var(--transition-base);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .project-image {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-links {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .project-link {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+        }
+
+        .project-link:hover {
+            transform: scale(1.1);
+        }
+
+        .project-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+        }
+
+        .project-body {
+            padding: 24px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .project-tech .tag {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+        }
+
+        /* ========== Skills Section ========== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .skill-category {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 28px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .skill-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-item {
+            padding: 6px 14px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .skill-item:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        /* ========== Certifications Section ========== */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .cert-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition-base);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cert-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .cert-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, #fef3c7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent-warm);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .cert-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .cert-org {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .cert-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== Campus Section ========== */
+        .campus-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .campus-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 28px;
+            transition: var(--transition-base);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .campus-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .campus-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .campus-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .campus-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .campus-logo svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .campus-info h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .campus-info span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .campus-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ========== Contact Section ========== */
+        .contact {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .contact-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .contact-value {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+        }
+
+        .social-icon:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-secondary);
+            transition: var(--transition-fast);
+        }
+
+        .social-icon:hover svg {
+            fill: white;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 36px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-form.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* ========== Animations ========== */
+        .education-card:nth-child(1) { transition-delay: 0.1s; }
+        .education-card:nth-child(2) { transition-delay: 0.2s; }
+
+        .experience-item:nth-child(1) { transition-delay: 0.1s; }
+        .experience-item:nth-child(2) { transition-delay: 0.2s; }
+        .experience-item:nth-child(3) { transition-delay: 0.3s; }
+
+        .project-card:nth-child(1) { transition-delay: 0.1s; }
+        .project-card:nth-child(2) { transition-delay: 0.2s; }
+        .project-card:nth-child(3) { transition-delay: 0.3s; }
+        .project-card:nth-child(4) { transition-delay: 0.4s; }
+
+        .skill-category:nth-child(1) { transition-delay: 0.1s; }
+        .skill-category:nth-child(2) { transition-delay: 0.2s; }
+        .skill-category:nth-child(3) { transition-delay: 0.3s; }
+
+        .cert-card:nth-child(1) { transition-delay: 0.1s; }
+        .cert-card:nth-child(2) { transition-delay: 0.2s; }
+        .cert-card:nth-child(3) { transition-delay: 0.3s; }
+        .cert-card:nth-child(4) { transition-delay: 0.4s; }
+        .cert-card:nth-child(5) { transition-delay: 0.5s; }
+        .cert-card:nth-child(6) { transition-delay: 0.6s; }
+
+        .campus-card:nth-child(1) { transition-delay: 0.1s; }
+        .campus-card:nth-child(2) { transition-delay: 0.2s; }
+        .campus-card:nth-child(3) { transition-delay: 0.3s; }
+        .campus-card:nth-child(4) { transition-delay: 0.4s; }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .skills-container,
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .education-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .education-left {
+                flex-direction: row;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                text-align: left;
+            }
+
+            .skills-container,
+            .cert-grid,
+            .campus-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ========== Mobile Menu ========== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 16px;
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu .nav-item {
+            display: block;
+            padding: 12px 16px;
+        }
+
+        /* ========== Language Toggle Styles ========== */
+        [data-lang="en"] {
+            display: block;
+        }
+        [data-lang="zh"] {
+            display: none;
+        }
+        body.zh-mode [data-lang="en"] {
+            display: none;
+        }
+        body.zh-mode [data-lang="zh"] {
+            display: block;
+        }
+        /* Inline elements default to inline for English, none for Chinese */
+        .hero-badge span[data-lang],
+        .hero-title[data-lang],
+        .hero-subtitle[data-lang],
+        .hero-status span[data-lang],
+        .section-label[data-lang],
+        .section-title[data-lang],
+        .section-desc[data-lang],
+        .education-date[data-lang],
+        .education-school[data-lang],
+        .education-degree[data-lang],
+        .education-detail span[data-lang],
+        .experience-title[data-lang],
+        .experience-company[data-lang],
+        .experience-period[data-lang],
+        .experience-desc li[data-lang],
+        .project-title[data-lang],
+        .project-desc[data-lang],
+        .skill-title[data-lang],
+        .cert-name[data-lang],
+        .cert-org[data-lang],
+        .cert-date[data-lang],
+        .campus-info h4[data-lang],
+        .campus-info span[data-lang],
+        .campus-desc[data-lang],
+        .contact-title[data-lang],
+        .contact-desc[data-lang],
+        .contact-label[data-lang],
+        .contact-value[data-lang],
+        .footer-logo[data-lang],
+        .footer-text[data-lang],
+        .footer-link[data-lang],
+        .form-label[data-lang],
+        .btn span[data-lang],
+        .nav-item span[data-lang] {
+            display: none;
+        }
+        /* English inline elements should show by default */
+        .hero-badge span[data-lang="en"],
+        .hero-title[data-lang="en"],
+        .hero-subtitle[data-lang="en"],
+        .hero-status span[data-lang="en"],
+        .section-label[data-lang="en"],
+        .section-title[data-lang="en"],
+        .section-desc[data-lang="en"],
+        .education-date[data-lang="en"],
+        .education-school[data-lang="en"],
+        .education-degree[data-lang="en"],
+        .education-detail span[data-lang="en"],
+        .experience-title[data-lang="en"],
+        .experience-company[data-lang="en"],
+        .experience-period[data-lang="en"],
+        .experience-desc li[data-lang="en"],
+        .project-title[data-lang="en"],
+        .project-desc[data-lang="en"],
+        .skill-title[data-lang="en"],
+        .cert-name[data-lang="en"],
+        .cert-org[data-lang="en"],
+        .cert-date[data-lang="en"],
+        .campus-info h4[data-lang="en"],
+        .campus-info span[data-lang="en"],
+        .campus-desc[data-lang="en"],
+        .contact-title[data-lang="en"],
+        .contact-desc[data-lang="en"],
+        .contact-label[data-lang="en"],
+        .contact-value[data-lang="en"],
+        .footer-logo[data-lang="en"],
+        .footer-text[data-lang="en"],
+        .footer-link[data-lang="en"],
+        .form-label[data-lang="en"],
+        .btn span[data-lang="en"],
+        .nav-item span[data-lang="en"] {
+            display: block;
+        }
+        /* When zh-mode, show Chinese inline elements */
+        body.zh-mode .hero-badge span[data-lang="zh"],
+        body.zh-mode .hero-title[data-lang="zh"],
+        body.zh-mode .hero-subtitle[data-lang="zh"],
+        body.zh-mode .hero-status span[data-lang="zh"],
+        body.zh-mode .section-label[data-lang="zh"],
+        body.zh-mode .section-title[data-lang="zh"],
+        body.zh-mode .section-desc[data-lang="zh"],
+        body.zh-mode .education-date[data-lang="zh"],
+        body.zh-mode .education-school[data-lang="zh"],
+        body.zh-mode .education-degree[data-lang="zh"],
+        body.zh-mode .education-detail span[data-lang="zh"],
+        body.zh-mode .experience-title[data-lang="zh"],
+        body.zh-mode .experience-company[data-lang="zh"],
+        body.zh-mode .experience-period[data-lang="zh"],
+        body.zh-mode .experience-desc li[data-lang="zh"],
+        body.zh-mode .project-title[data-lang="zh"],
+        body.zh-mode .project-desc[data-lang="zh"],
+        body.zh-mode .skill-title[data-lang="zh"],
+        body.zh-mode .cert-name[data-lang="zh"],
+        body.zh-mode .cert-org[data-lang="zh"],
+        body.zh-mode .cert-date[data-lang="zh"],
+        body.zh-mode .campus-info h4[data-lang="zh"],
+        body.zh-mode .campus-info span[data-lang="zh"],
+        body.zh-mode .campus-desc[data-lang="zh"],
+        body.zh-mode .contact-title[data-lang="zh"],
+        body.zh-mode .contact-desc[data-lang="zh"],
+        body.zh-mode .contact-label[data-lang="zh"],
+        body.zh-mode .contact-value[data-lang="zh"],
+        body.zh-mode .footer-logo[data-lang="zh"],
+        body.zh-mode .footer-text[data-lang="zh"],
+        body.zh-mode .footer-link[data-lang="zh"],
+        body.zh-mode .form-label[data-lang="zh"],
+        body.zh-mode .btn span[data-lang="zh"],
+        body.zh-mode .nav-item span[data-lang="zh"] {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#hero" class="header-logo">Li<span>.</span>Ming</a>
+                <nav class="nav">
+                    <a href="#education" class="nav-item"><span data-lang="en">Education</span><span data-lang="zh">教育背景</span></a>
+                    <a href="#experience" class="nav-item"><span data-lang="en">Experience</span><span data-lang="zh">实习经历</span></a>
+                    <a href="#projects" class="nav-item"><span data-lang="en">Projects</span><span data-lang="zh">项目经历</span></a>
+                    <a href="#skills" class="nav-item"><span data-lang="en">Skills</span><span data-lang="zh">专业技能</span></a>
+                    <a href="#certifications" class="nav-item"><span data-lang="en">Certifications</span><span data-lang="zh">证书荣誉</span></a>
+                    <a href="#campus" class="nav-item"><span data-lang="en">Campus</span><span data-lang="zh">校园经历</span></a>
+                    <a href="#contact" class="nav-item"><span data-lang="en">Contact</span><span data-lang="zh">联系方式</span></a>
+                </nav>
+                <button class="lang-toggle" id="langToggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span id="langLabel">EN</span>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#education" class="nav-item"><span data-lang="en">Education</span><span data-lang="zh">教育背景</span></a>
+            <a href="#experience" class="nav-item"><span data-lang="en">Experience</span><span data-lang="zh">实习经历</span></a>
+            <a href="#projects" class="nav-item"><span data-lang="en">Projects</span><span data-lang="zh">项目经历</span></a>
+            <a href="#skills" class="nav-item"><span data-lang="en">Skills</span><span data-lang="zh">专业技能</span></a>
+            <a href="#certifications" class="nav-item"><span data-lang="en">Certifications</span><span data-lang="zh">证书荣誉</span></a>
+            <a href="#campus" class="nav-item"><span data-lang="en">Campus</span><span data-lang="zh">校园经历</span></a>
+            <a href="#contact" class="nav-item"><span data-lang="en">Contact</span><span data-lang="zh">联系方式</span></a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero section-alt" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span data-lang="en">Full Stack Developer</span>
+                        <span data-lang="zh">全栈开发工程师</span>
+                    </div>
+                    <h1 class="hero-title" data-lang="en">Li Ming</h1>
+                    <h1 class="hero-title" data-lang="zh">李明</h1>
+                    <p class="hero-subtitle" data-lang="en">Li Ming</p>
+                    <p class="hero-subtitle" data-lang="zh">李明</p>
+                    <p class="hero-desc" data-lang="en">
+                        Recent Master's graduate in Computer Science from Peking University, specializing in full-stack development and distributed systems.
+                        Passionate about solving real-world problems with technology, with extensive internship experience at top internet companies.
+                    </p>
+                    <p class="hero-desc" data-lang="zh">
+                        北京大学计算机科学专业应届硕士毕业生，专注于全栈开发与分布式系统。
+                        热衷于用技术解决实际问题，具有丰富的互联网大厂实习经验。
+                    </p>
+                    <div class="hero-info">
+                        <div class="hero-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span data-lang="en">Beijing, China</span>
+                            <span data-lang="zh">北京，中国</span>
+                        </div>
+                        <div class="hero-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            liming@email.com
+                        </div>
+                        <div class="hero-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            +86 138-xxxx-xxxx
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span data-lang="en">Get in Touch</span>
+                            <span data-lang="zh">联系我</span>
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            <span data-lang="en">Download CV</span>
+                            <span data-lang="zh">下载简历</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-avatar">
+                        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="avatarBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#dbeafe"/>
+                                    <stop offset="100%" style="stop-color:#f1f5f9"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="320" height="320" fill="url(#avatarBg)"/>
+                            <circle cx="160" cy="130" r="55" fill="#94a3b8"/>
+                            <ellipse cx="160" cy="270" rx="85" ry="70" fill="#94a3b8"/>
+                            <text x="160" y="310" font-family="Inter, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Avatar</text>
+                        </svg>
+                    </div>
+                    <div class="hero-status">
+                        <span data-lang="en">Open to Work</span>
+                        <span data-lang="zh">求职中</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Education</div>
+                <div class="section-label" data-lang="zh">教育背景</div>
+                <h2 class="section-title" data-lang="en">Education Background</h2>
+                <h2 class="section-title" data-lang="zh">教育背景</h2>
+                <p class="section-desc" data-lang="en">Strong academic foundation and professional expertise</p>
+                <p class="section-desc" data-lang="zh">扎实的学术基础与专业知识</p>
+            </div>
+            <div class="education-list">
+                <div class="education-card">
+                    <div class="education-left">
+                        <div class="education-logo">PKU</div>
+                        <div class="education-date">2022 - 2025</div>
+                    </div>
+                    <div class="education-right">
+                        <h3 class="education-school" data-lang="en">Peking University</h3>
+                        <h3 class="education-school" data-lang="zh">北京大学</h3>
+                        <p class="education-degree" data-lang="en">Computer Science & Technology · Master's Degree</p>
+                        <p class="education-degree" data-lang="zh">计算机科学与技术 · 硕士学位</p>
+                        <div class="education-details">
+                            <span class="education-detail">
+                                <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                                <span data-lang="en">GPA: 3.85/4.0</span>
+                                <span data-lang="zh">GPA: 3.85/4.0</span>
+                            </span>
+                            <span class="education-detail">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <span data-lang="en">Outstanding Graduate</span>
+                                <span data-lang="zh">优秀毕业生</span>
+                            </span>
+                        </div>
+                        <div class="education-courses">
+                            <span class="tag">数据结构</span>
+                            <span class="tag">算法设计</span>
+                            <span class="tag">分布式系统</span>
+                            <span class="tag">机器学习</span>
+                            <span class="tag">计算机网络</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-left">
+                        <div class="education-logo">THU</div>
+                        <div class="education-date">2018 - 2022</div>
+                    </div>
+                    <div class="education-right">
+                        <h3 class="education-school" data-lang="en">Tsinghua University</h3>
+                        <h3 class="education-school" data-lang="zh">清华大学</h3>
+                        <p class="education-degree" data-lang="en">Computer Science & Technology · Bachelor's Degree</p>
+                        <p class="education-degree" data-lang="zh">计算机科学与技术 · 学士学位</p>
+                        <div class="education-details">
+                            <span class="education-detail">
+                                <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                                <span data-lang="en">GPA: 3.78/4.0</span>
+                                <span data-lang="zh">GPA: 3.78/4.0</span>
+                            </span>
+                            <span class="education-detail">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <span data-lang="en">First Class Scholarship</span>
+                                <span data-lang="zh">一等奖学金</span>
+                            </span>
+                        </div>
+                        <div class="education-courses">
+                            <span class="tag">数据结构</span>
+                            <span class="tag">操作系统</span>
+                            <span class="tag">数据库原理</span>
+                            <span class="tag">软件工程</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section section-alt" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Experience</div>
+                <div class="section-label" data-lang="zh">实习经历</div>
+                <h2 class="section-title" data-lang="en">Internship Experience</h2>
+                <h2 class="section-title" data-lang="zh">实习经历</h2>
+                <p class="section-desc" data-lang="en">Practical experience from renowned internet companies</p>
+                <p class="section-desc" data-lang="zh">知名互联网公司的实践经验</p>
+            </div>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title" data-lang="en">Backend Development Engineer Intern</h3>
+                                <h3 class="experience-title" data-lang="zh">后端开发工程师实习生</h3>
+                                <p class="experience-company" data-lang="en">ByteDance · 字节跳动</p>
+                                <p class="experience-company" data-lang="zh">字节跳动 · ByteDance</p>
+                            </div>
+                            <span class="experience-period">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                2024.06 - 2024.09
+                            </span>
+                        </div>
+                        <ul class="experience-desc">
+                            <li data-lang="en">Participated in the design and optimization of Douyin's recommendation system backend architecture, improving API response speed by 30%</li>
+                            <li data-lang="zh">参与抖音推荐系统后端架构设计与优化，提升接口响应速度30%</li>
+                            <li data-lang="en">Responsible for user behavior data collection and analysis module development, processing millions of data entries daily</li>
+                            <li data-lang="zh">负责用户行为数据收集与分析模块开发，日处理数据量达千万级</li>
+                            <li data-lang="en">Refactored core recommendation algorithm services using Go, achieving 40% performance improvement</li>
+                            <li data-lang="zh">基于Go语言重构核心推荐算法服务，性能提升40%</li>
+                            <li data-lang="en">Participated in the design of grayscale release and A/B testing systems, supporting multi-dimensional experiment configuration</li>
+                            <li data-lang="zh">参与灰度发布与A/B测试系统设计，支持多维度实验配置</li>
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="tag">Go</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">Kafka</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">gRPC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title" data-lang="en">Full Stack Development Engineer Intern</h3>
+                                <h3 class="experience-title" data-lang="zh">全栈开发工程师实习生</h3>
+                                <p class="experience-company" data-lang="en">Alibaba · 阿里巴巴</p>
+                                <p class="experience-company" data-lang="zh">阿里巴巴 · Alibaba</p>
+                            </div>
+                            <span class="experience-period">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                2023.07 - 2023.09
+                            </span>
+                        </div>
+                        <ul class="experience-desc">
+                            <li data-lang="en">Participated in Taobao merchant backend management system development, responsible for order management module</li>
+                            <li data-lang="zh">参与淘宝商家后台管理系统开发，负责订单管理模块前后端开发</li>
+                            <li data-lang="en">Built with React + Node.js, handling over 500k merchant requests daily</li>
+                            <li data-lang="zh">使用React + Node.js技术栈，日均处理商家请求超50万次</li>
+                            <li data-lang="en">Optimized database queries, reducing homepage load time from 3s to 800ms</li>
+                            <li data-lang="zh">优化数据库查询语句，首页加载时间从3s降至800ms</li>
+                            <li data-lang="en">Participated in microservice splitting and Docker containerization, supporting Double 11 shopping festival</li>
+                            <li data-lang="zh">参与微服务拆分与Docker容器化部署，支撑双十一大促活动</li>
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Nginx</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title" data-lang="en">Frontend Development Engineer Intern</h3>
+                                <h3 class="experience-title" data-lang="zh">前端开发工程师实习生</h3>
+                                <p class="experience-company" data-lang="en">Tencent · 腾讯</p>
+                                <p class="experience-company" data-lang="zh">腾讯 · Tencent</p>
+                            </div>
+                            <span class="experience-period">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                2023.03 - 2023.05
+                            </span>
+                        </div>
+                        <ul class="experience-desc">
+                            <li data-lang="en">Participated in WeChat Mini Program 'Tencent Docs' core features, responsible for collaborative document module</li>
+                            <li data-lang="zh">参与微信小程序「腾讯文档」核心功能开发，负责协作文档模块</li>
+                            <li data-lang="en">Implemented real-time collaborative editing, supporting 100+ users editing simultaneously</li>
+                            <li data-lang="zh">实现实时协同编辑功能，支持100+用户同时在线编辑</li>
+                            <li data-lang="en">Built reusable component library adopted by other teams, achieving 60% reuse rate</li>
+                            <li data-lang="zh">封装可复用组件库被团队其他项目采用，复用率达60%</li>
+                        </ul>
+                        <div class="experience-skills">
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">Webpack</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Projects</div>
+                <div class="section-label" data-lang="zh">项目经历</div>
+                <h2 class="section-title" data-lang="en">Project Experience</h2>
+                <h2 class="section-title" data-lang="zh">项目经历</h2>
+                <p class="section-desc" data-lang="en">Valuable experience from practical projects</p>
+                <p class="section-desc" data-lang="zh">从实际项目中积累的宝贵经验</p>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="640" height="360" fill="#1e293b"/>
+                            <rect x="40" y="40" width="560" height="280" rx="8" fill="#334155"/>
+                            <circle cx="320" cy="180" r="80" fill="#3b82f6" opacity="0.6"/>
+                            <circle cx="320" cy="180" r="50" fill="#60a5fa"/>
+                            <text x="320" y="200" font-family="sans-serif" font-size="40" fill="white" text-anchor="middle">AI</text>
+                        </svg>
+                        <div class="project-links">
+                            <a href="#" class="project-link" title="GitHub">
+                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </a>
+                            <a href="#" class="project-link" title="Live Demo">
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-lang="en">Intelligent Recommendation System</h3>
+                        <h3 class="project-title" data-lang="zh">智能推荐系统</h3>
+                        <p class="project-desc" data-lang="en">Deep learning-based personalized recommendation algorithm for user behavior prediction and content matching, supporting both real-time and offline batch processing.</p>
+                        <p class="project-desc" data-lang="zh">基于深度学习的个性化推荐算法，实现用户行为预测与内容精准匹配，支持实时推荐与离线批处理两种模式。</p>
+                        <div class="project-tech">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Spark</span>
+                            <span class="tag">Redis</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="640" height="360" fill="#0f172a"/>
+                            <rect x="200" y="100" width="240" height="160" rx="12" fill="#1e293b"/>
+                            <rect x="220" y="120" width="200" height="80" rx="6" fill="#334155"/>
+                            <text x="320" y="170" font-family="sans-serif" font-size="24" fill="#64748b" text-anchor="middle">API</text>
+                            <text x="320" y="230" font-family="sans-serif" font-size="14" fill="#64748b" text-anchor="middle">RESTful</text>
+                        </svg>
+                        <div class="project-links">
+                            <a href="#" class="project-link" title="GitHub">
+                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-lang="en">Enterprise Microservices Architecture</h3>
+                        <h3 class="project-title" data-lang="zh">企业级微服务架构</h3>
+                        <p class="project-desc" data-lang="en">Spring Cloud-based distributed e-commerce system with user, product, order, and payment modules, featuring service registration, circuit breaker, and rate limiting.</p>
+                        <p class="project-desc" data-lang="zh">基于Spring Cloud的分布式电商系统，包含用户、商品、订单、支付等核心模块，实现服务注册、熔断、限流等特性。</p>
+                        <div class="project-tech">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring Cloud</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="640" height="360" fill="#172554"/>
+                            <circle cx="320" cy="180" r="100" fill="#1e40af" opacity="0.5"/>
+                            <circle cx="320" cy="180" r="60" fill="#3b82f6"/>
+                            <rect x="280" y="160" width="80" height="40" rx="4" fill="white"/>
+                        </svg>
+                        <div class="project-links">
+                            <a href="#" class="project-link" title="GitHub">
+                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-lang="en">Real-time Data Visualization Platform</h3>
+                        <h3 class="project-title" data-lang="zh">实时数据可视化平台</h3>
+                        <p class="project-desc" data-lang="en">Interactive data dashboard built with Vue3 + D3.js, supporting multi-dimensional real-time data updates and customizable visualization charts.</p>
+                        <p class="project-desc" data-lang="zh">基于Vue3 + D3.js的交互式数据大屏，支持多维度数据实时更新与可视化图表自定义配置。</p>
+                        <div class="project-tech">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="640" height="360" fill="#18181b"/>
+                            <polygon points="320,80 480,280 160,280" fill="#27272a"/>
+                            <text x="320" y="240" font-family="sans-serif" font-size="24" fill="#a855f7" text-anchor="middle">NLP</text>
+                        </svg>
+                        <div class="project-links">
+                            <a href="#" class="project-link" title="GitHub">
+                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-lang="en">Natural Language Processing Toolkit</h3>
+                        <h3 class="project-title" data-lang="zh">自然语言处理工具集</h3>
+                        <p class="project-desc" data-lang="en">Integrated BERT, GPT and other pretrained models, providing easy-to-use interfaces for text classification, sentiment analysis, and entity recognition.</p>
+                        <p class="project-desc" data-lang="zh">整合BERT、GPT等预训练模型，提供文本分类、情感分析、实体识别等NLP任务的易用接口。</p>
+                        <div class="project-tech">
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">FastAPI</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section section-alt" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Skills</div>
+                <div class="section-label" data-lang="zh">专业技能</div>
+                <h2 class="section-title" data-lang="en">Professional Skills</h2>
+                <h2 class="section-title" data-lang="zh">专业技能</h2>
+                <p class="section-desc" data-lang="en">Technical expertise and tool proficiency</p>
+                <p class="section-desc" data-lang="zh">技术栈与工具掌握情况</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3 class="skill-title" data-lang="en">Programming Languages</h3>
+                    <h3 class="skill-title" data-lang="zh">编程语言</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">Go</span>
+                        <span class="skill-item">TypeScript</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">C++</span>
+                        <span class="skill-item">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="skill-title" data-lang="en">Frameworks & Technologies</h3>
+                    <h3 class="skill-title" data-lang="zh">框架与技术</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">Vue.js</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">Spring Cloud</span>
+                        <span class="skill-item">Django</span>
+                        <span class="skill-item">FastAPI</span>
+                        <span class="skill-item">TensorFlow</span>
+                        <span class="skill-item">PyTorch</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3 class="skill-title" data-lang="en">Tools & Platforms</h3>
+                    <h3 class="skill-title" data-lang="zh">工具与平台</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Kubernetes</span>
+                        <span class="skill-item">AWS</span>
+                        <span class="skill-item">Linux</span>
+                        <span class="skill-item">Nginx</span>
+                        <span class="skill-item">Redis</span>
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Certifications</div>
+                <div class="section-label" data-lang="zh">证书荣誉</div>
+                <h2 class="section-title" data-lang="en">Certifications & Awards</h2>
+                <h2 class="section-title" data-lang="zh">证书荣誉</h2>
+                <p class="section-desc" data-lang="en">Professional certifications and achievements</p>
+                <p class="section-desc" data-lang="zh">专业认证与获奖记录</p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">AWS Certified Developer</h4>
+                    <h4 class="cert-name" data-lang="zh">AWS认证开发者</h4>
+                    <p class="cert-org">Amazon Web Services</p>
+                    <p class="cert-date">2024.03</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">Alibaba Cloud ACE Certification</h4>
+                    <h4 class="cert-name" data-lang="zh">阿里云ACE认证</h4>
+                    <p class="cert-org">Alibaba Cloud</p>
+                    <p class="cert-date">2023.12</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">ACM-ICPC Regional Silver Medal</h4>
+                    <h4 class="cert-name" data-lang="zh">ACM-ICPC区域赛银奖</h4>
+                    <p class="cert-org">ACM International</p>
+                    <p class="cert-date">2021.10</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">PAT Level A</h4>
+                    <h4 class="cert-name" data-lang="zh">PAT计算机程序设计甲级</h4>
+                    <p class="cert-org" data-lang="en">Zhejiang University</p>
+                    <p class="cert-org" data-lang="zh">浙江大学</p>
+                    <p class="cert-date">2021.09</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">National Mathematical Modeling Contest First Prize</h4>
+                    <h4 class="cert-name" data-lang="zh">全国大学生数学建模一等奖</h4>
+                    <p class="cert-org" data-lang="en">China Society of Industrial and Applied Mathematics</p>
+                    <p class="cert-org" data-lang="zh">中国工业与应用数学学会</p>
+                    <p class="cert-date">2021.08</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h4 class="cert-name" data-lang="en">University First-Class Scholarship</h4>
+                    <h4 class="cert-name" data-lang="zh">校级一等奖学金</h4>
+                    <p class="cert-org" data-lang="en">Tsinghua University</p>
+                    <p class="cert-org" data-lang="zh">清华大学</p>
+                    <p class="cert-date">2019-2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Section -->
+    <section class="section section-alt" id="campus">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label" data-lang="en">Campus Life</div>
+                <div class="section-label" data-lang="zh">校园经历</div>
+                <h2 class="section-title" data-lang="en">Campus Experience</h2>
+                <h2 class="section-title" data-lang="zh">校园经历</h2>
+                <p class="section-desc" data-lang="en">Extracurricular activities and practical experience</p>
+                <p class="section-desc" data-lang="zh">课外活动与实践经历</p>
+            </div>
+            <div class="campus-list">
+                <div class="campus-card">
+                    <div class="campus-header">
+                        <div class="campus-logo">
+                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="campus-info">
+                            <h4 data-lang="en">Student Union President</h4>
+                            <h4 data-lang="zh">学生会主席</h4>
+                            <span data-lang="en">School of Computer Science, Peking University · 2023-2024</span>
+                            <span data-lang="zh">北京大学计算机学院 · 2023-2024</span>
+                        </div>
+                    </div>
+                    <p class="campus-desc" data-lang="en">Organized 10+ large-scale events including welcome parties and tech festivals, with 5000+ participants. Coordinated inter-departmental work, developing teamwork and project management skills.</p>
+                    <p class="campus-desc" data-lang="zh">统筹组织学院迎新晚会、科技文化节等大型活动10+场，参与人数累计达5000+人。协调各部门工作，培养团队协作与项目管理能力。</p>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-header">
+                        <div class="campus-logo">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        </div>
+                        <div class="campus-info">
+                            <h4 data-lang="en">Technology Department Head</h4>
+                            <h4 data-lang="zh">技术部部长</h4>
+                            <span>Microsoft Student Club · 2022-2023</span>
+                        </div>
+                    </div>
+                    <p class="campus-desc" data-lang="en">Hosted 15+ tech talks and hackathons, inviting Microsoft engineers for technical lectures. Organized members to contribute to open source projects, with 100+ PRs merged.</p>
+                    <p class="campus-desc" data-lang="zh">举办技术分享会、黑客马拉松等活动15+场，邀请微软工程师进行技术讲座。组织成员参与开源项目贡献，累计PR 100+。</p>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-header">
+                        <div class="campus-logo">
+                            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <div class="campus-info">
+                            <h4 data-lang="en">Volunteer Teacher</h4>
+                            <h4 data-lang="zh">支教志愿者</h4>
+                            <span data-lang="en">Teach for China · 2021 Summer</span>
+                            <span data-lang="zh">美丽中国支教项目 · 2021夏季</span>
+                        </div>
+                    </div>
+                    <p class="campus-desc" data-lang="en">Spent one month teaching computer basics at a rural school in Yunnan. Designed interactive teaching methods to spark students' interest in programming.</p>
+                    <p class="campus-desc" data-lang="zh">前往云南山区中学进行为期一个月的支教活动，教授计算机基础课程。设计互动式教学方案，激发学生对编程的兴趣。</p>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-header">
+                        <div class="campus-logo">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="campus-info">
+                            <h4 data-lang="en">Programming Competition Captain</h4>
+                            <h4 data-lang="zh">程序设计竞赛队长</h4>
+                            <span>Tsinghua University ACM Training Team · 2019-2022</span>
+                        </div>
+                    </div>
+                    <p class="campus-desc" data-lang="en">Led the team in ACM-ICPC and CCPC competitions, winning 2 regional silver medals. Organized campus programming contests, responsible for problem design and competition management.</p>
+                    <p class="campus-desc" data-lang="zh">带领团队参加ACM-ICPC、CCPC等竞赛，获得区域赛银奖2次。组织校内编程竞赛，负责题目设计与赛制安排。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-inner">
+                <div class="contact-info">
+                    <h2 class="contact-title" data-lang="en">Let's Connect</h2>
+                    <h2 class="contact-title" data-lang="zh">联系我</h2>
+                    <p class="contact-desc" data-lang="en">I am actively seeking full-stack development opportunities. If you are interested in my background or have any collaboration opportunities, please feel free to reach out!</p>
+                    <p class="contact-desc" data-lang="zh">我目前正在积极寻找全栈开发相关的全职机会。如果您对我的背景感兴趣，或有任何合作机会，欢迎联系我！</p>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div>
+                                <p class="contact-label" data-lang="en">Email</p>
+                                <p class="contact-label" data-lang="zh">邮箱</p>
+                                <p class="contact-value">liming@email.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <p class="contact-label" data-lang="en">Location</p>
+                                <p class="contact-label" data-lang="zh">地点</p>
+                                <p class="contact-value" data-lang="en">Beijing, China</p>
+                                <p class="contact-value" data-lang="zh">北京，中国</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <p class="contact-label" data-lang="en">Phone</p>
+                                <p class="contact-label" data-lang="zh">电话</p>
+                                <p class="contact-value">+86 138-xxxx-xxxx</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="#" class="social-icon" title="LinkedIn">
+                            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="GitHub">
+                            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="LeetCode">
+                            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" data-lang="en">Name</label>
+                            <label class="form-label" data-lang="zh">姓名</label>
+                            <input type="text" class="form-input" data-placeholder-en="Your name" data-placeholder-zh="您的姓名" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-lang="en">Email</label>
+                            <label class="form-label" data-lang="zh">邮箱</label>
+                            <input type="email" class="form-input" data-placeholder-en="your@email.com" data-placeholder-zh="your@email.com" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-lang="en">Message</label>
+                            <label class="form-label" data-lang="zh">留言</label>
+                            <textarea class="form-textarea" data-placeholder-en="Your message..." data-placeholder-zh="请输入您的留言..." placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-btn">
+                            <span data-lang="en">Send Message</span>
+                            <span data-lang="zh">发送消息</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo" data-lang="en">Li.Ming</div>
+                <div class="footer-logo" data-lang="zh">李明</div>
+                <p class="footer-text" data-lang="en">© 2026 Li Ming. All rights reserved.</p>
+                <p class="footer-text" data-lang="zh">© 2026 李明. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link" data-lang="en">Privacy</a>
+                    <a href="#" class="footer-link" data-lang="zh">隐私政策</a>
+                    <a href="#" class="footer-link" data-lang="en">Terms</a>
+                    <a href="#" class="footer-link" data-lang="zh">使用条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== Mobile Menu Toggle ==========
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ========== Language Toggle ==========
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+
+        langToggle.addEventListener('click', () => {
+            document.body.classList.toggle('zh-mode');
+            const isZh = document.body.classList.contains('zh-mode');
+            langLabel.textContent = isZh ? '中' : 'EN';
+
+            // Update placeholders
+            document.querySelectorAll('input[data-placeholder-en]').forEach(input => {
+                input.placeholder = isZh ? input.dataset.placeholderZh : input.dataset.placeholderEn;
+            });
+            document.querySelectorAll('textarea[data-placeholder-en]').forEach(textarea => {
+                textarea.placeholder = isZh ? textarea.dataset.placeholderZh : textarea.dataset.placeholderEn;
+            });
+
+            // Save preference
+            localStorage.setItem('lang', isZh ? 'zh' : 'en');
+        });
+
+        // Load saved language preference
+        if (localStorage.getItem('lang') === 'zh') {
+            document.body.classList.add('zh-mode');
+            langLabel.textContent = '中';
+            // Update placeholders on load
+            document.querySelectorAll('input[data-placeholder-en]').forEach(input => {
+                input.placeholder = input.dataset.placeholderZh;
+            });
+            document.querySelectorAll('textarea[data-placeholder-en]').forEach(textarea => {
+                textarea.placeholder = textarea.dataset.placeholderZh;
+            });
+        }
+
+        // ========== Active Navigation ==========
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${sectionId}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // ========== Intersection Observer for Animations ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll(
+            '.education-card, .experience-item, .project-card, .skill-category, .cert-card, .campus-card, .contact-info, .contact-form'
+        ).forEach(el => {
+            observer.observe(el);
+        });
+
+        // ========== Contact Form ==========
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const isZh = document.body.classList.contains('zh-mode');
+            alert(isZh ? '感谢您的留言！这是一个演示表单。' : 'Thank you for your message! This is a demo form.');
+        });
+    </script>
+</body>
+</html>
