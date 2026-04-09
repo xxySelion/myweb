@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 产品经理 | 个人主页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Sans+SC:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --bg-card: #ffffff;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #0d9488;
+            --accent-light: #14b8a6;
+            --accent-dark: #0f766e;
+            --accent-bg: #f0fdfa;
+            --border: #e7e5e4;
+            --border-light: #f5f5f4;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========== 布局容器 ========== */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== 导航栏 ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            background: rgba(250, 250, 249, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 250, 249, 0.98);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== Hero 区域 ========== */
+        .hero {
+            padding: 8rem 0 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            background: var(--accent-bg);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero-title .accent {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            max-width: 540px;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin-bottom: 2rem;
+            line-height: 1.9;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .hero-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* 侧边信息卡片 */
+        .hero-sidebar {
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-bg) 0%, #e0f2f1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+            border: 2px solid var(--accent-bg);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card-title {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* ========== 通用章节样式 ========== */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: auto;
+            max-width: 400px;
+            text-align: right;
+        }
+
+        /* ========== 教育背景（横向简洁布局） ========== */
+        .edu-horizontal {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .edu-school {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 2rem 2.5rem;
+            border-right: 1px solid var(--border);
+            min-width: 380px;
+        }
+
+        .edu-logo {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .edu-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .edu-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .edu-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .edu-award-item {
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 0.25rem 0.625rem;
+            border-radius: 4px;
+        }
+
+        .edu-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .edu-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .edu-meta-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .edu-meta-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .edu-tags {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0 2rem;
+            border-left: 1px solid var(--border);
+        }
+
+        .edu-tag {
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-secondary);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ========== 专业技能 ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .skill-card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.875rem;
+        }
+
+        .skill-tag {
+            padding: 0.25rem 0.625rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* 技能进度条 */
+        .skill-bars {
+            margin-top: 2.5rem;
+        }
+
+        .skill-bars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .skill-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .skill-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.625rem;
+        }
+
+        .skill-bar-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar-percent {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .skill-bar-track {
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========== 实习经历 ========== */
+        .intern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .intern-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .intern-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .intern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.25rem;
+        }
+
+        .intern-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .intern-company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .intern-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .intern-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .intern-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .intern-tag {
+            padding: 0.25rem 0.625rem;
+            background: var(--accent-bg);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ========== 项目经历 ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-card.featured {
+            grid-column: span 2;
+        }
+
+        .project-image {
+            height: 160px;
+            background: linear-gradient(135deg, var(--accent-bg) 0%, #e0f2f1 50%, #f0fdfa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: gap 0.2s;
+        }
+
+        .project-link:hover {
+            gap: 0.5rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            margin-bottom: 1rem;
+        }
+
+        .project-stat {
+            text-align: center;
+        }
+
+        .project-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .project-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            padding: 0.25rem 0.625rem;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== 获奖荣誉 ========== */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .award-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .award-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .award-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .award-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .award-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== 证书认证 ========== */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .cert-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== 联系方式 ========== */
+        .contact-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: var(--accent-bg);
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-value {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .contact-value a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== 页脚 ========== */
+        footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent-bg);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ========== 动画 ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-sidebar {
+                max-width: 400px;
+            }
+
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-sidebar {
+                flex-direction: row;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skill-bars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intern-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card.featured {
+                grid-column: span 1;
+            }
+
+            .awards-grid,
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .section-desc {
+                text-align: left;
+                margin-left: 0;
+            }
+
+            .edu-sidebar {
+                flex-direction: column;
+            }
+
+            .skills-grid,
+            .awards-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">PM<span>.</span>studio</div>
+            <div class="nav-links">
+                <a href="#about">关于</a>
+                <a href="#education">教育</a>
+                <a href="#skills">技能</a>
+                <a href="#internship">实习</a>
+                <a href="#projects">项目</a>
+                <a href="#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero 区域 -->
+        <section class="hero" id="about">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">即将毕业于 2027 年</div>
+                        <h1 class="hero-title">
+                            你好，我是<br>
+                            <span class="accent">阿信</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            即将入职的 AI 产品经理 · 热爱用 AI 技术解决实际问题
+                        </p>
+                        <p class="hero-description">
+                            来自 南京大学大学的在读硕士研究生，对 AI 产品充满热情。在校期间积极参与 AI 相关项目，
+                            善于将技术理解与用户需求结合，期待在 AI 产品领域深耕发展。
+                        </p>
+                        <div class="hero-tags">
+                            <span class="hero-tag">🤖 AI 产品</span>
+                            <span class="hero-tag">🧠 大模型</span>
+                            <span class="hero-tag">💡 AIGC</span>
+                            <span class="hero-tag">📊 数据分析</span>
+                            <span class="hero-tag">🎯 需求洞察</span>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn btn-primary">联系我</a>
+                            <a href="#projects" class="btn btn-secondary">查看项目</a>
+                        </div>
+                    </div>
+                    <div class="hero-sidebar">
+                        <div class="info-card">
+                            <div class="info-card-header">
+                                <div class="avatar">👤</div>
+                                <div>
+                                    <div class="info-card-name">阿信</div>
+                                    <div class="info-card-title">AI 产品经理</div>
+                                </div>
+                            </div>
+                            <ul class="info-list">
+                                <li>
+                                    <span class="icon">📍</span>
+                                    南京 · 中国
+                                </li>
+                                <li>
+                                    <span class="icon">🎓</span>
+                                    南京大学 · 硕士
+                                </li>
+                                <li>
+                                    <span class="icon">📧</span>
+                                    your.email@example.com
+                                </li>
+                                <li>
+                                    <span class="icon">🔗</span>
+                                    linkedin.com/in/yourname
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景 -->
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">教育背景</h2>
+                </div>
+                <div class="edu-horizontal fade-in">
+                    <div class="edu-school">
+                        <div class="edu-logo">🎓</div>
+                        <div class="edu-info">
+                            <h3>南京大学</h3>
+                            <p>地图学与地理信息系统 · 硕士</p>
+                            <span class="edu-time">2024.09 - 2027.06</span>
+                            <div class="edu-awards">
+                                <span class="edu-award-item">🏆 校级优秀研究生</span>
+                                <span class="edu-award-item">🎓 学业二、三等奖学金</span>
+                                <span class="edu-award-item">🌟 优秀共青团员</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edu-tags">
+                        <span class="edu-tag">机器学习</span>
+                        <span class="edu-tag">数据分析</span>
+                        <span class="edu-tag">地理信息系统</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专业技能 -->
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">专业技能</h2>
+                    <p class="section-desc">AI 产品经理的核心能力</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">🤖</div>
+                            <h3>AI 产品设计</h3>
+                        </div>
+                        <p>大模型应用设计、RAG 系统、Agent 产品规划、Prompt 工程</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ChatGPT</span>
+                            <span class="skill-tag">Claude</span>
+                            <span class="skill-tag">LangChain</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">📝</div>
+                            <h3>需求分析</h3>
+                        </div>
+                        <p>用户调研、PRD 撰写、场景拆解、竞品分析、KANO 模型</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">用户访谈</span>
+                            <span class="skill-tag">数据分析</span>
+                            <span class="skill-tag">Axure</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">📊</div>
+                            <h3>数据分析</h3>
+                        </div>
+                        <p>SQL 查询、Python 数据分析、数据可视化、指标体系</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">Tableau</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">🎨</div>
+                            <h3>交互设计</h3>
+                        </div>
+                        <p>Figma 原型设计、用户旅程图、信息架构、可用性测试</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Sketch</span>
+                            <span class="skill-tag">墨刀</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">💻</div>
+                            <h3>技术基础</h3>
+                        </div>
+                        <p>Python 编程、机器学习基础、深度学习概念、LLM 原理</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Hugging Face</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">🤝</div>
+                            <h3>协作能力</h3>
+                        </div>
+                        <p>跨部门沟通、项目管理、敏捷开发、团队协作</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Notion</span>
+                            <span class="skill-tag">飞书</span>
+                            <span class="skill-tag">Jira</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-bars fade-in">
+                    <div class="skill-bars-grid">
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">AI 产品设计</span>
+                                <span class="skill-bar-percent">90%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">需求分析与 PRD</span>
+                                <span class="skill-bar-percent">88%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">数据分析（SQL/Python）</span>
+                                <span class="skill-bar-percent">85%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">交互设计（Figma）</span>
+                                <span class="skill-bar-percent">80%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">Python / 机器学习</span>
+                                <span class="skill-bar-percent">78%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-header">
+                                <span class="skill-bar-title">产品项目管理</span>
+                                <span class="skill-bar-percent">82%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实习经历 -->
+        <section class="section" id="internship">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">实习经历</h2>
+                    <p class="section-desc">在实践中积累的 AI 产品经验</p>
+                </div>
+                <div class="intern-grid">
+                    <div class="intern-card fade-in">
+                        <div class="intern-header">
+                            <div>
+                                <div class="intern-title">AI 产品实习生</div>
+                                <div class="intern-company">XX 科技公司 · AI 产品部</div>
+                            </div>
+                            <div class="intern-date">2024.06 - 2024.12</div>
+                        </div>
+                        <p class="intern-desc">
+                            参与企业级 AI 助手产品设计，负责对话流程优化与 Prompt 调优。
+                            独立完成 3 个核心场景的 PRD，协同算法团队优化模型效果。
+                            主导上线智能问答模块，用户满意度提升 25%。
+                        </p>
+                        <div class="intern-tags">
+                            <span class="intern-tag">对话式 AI</span>
+                            <span class="intern-tag">Prompt 工程</span>
+                            <span class="intern-tag">PRD</span>
+                            <span class="intern-tag">跨部门协作</span>
+                        </div>
+                    </div>
+                    <div class="intern-card fade-in">
+                        <div class="intern-header">
+                            <div>
+                                <div class="intern-title">产品经理实习生</div>
+                                <div class="intern-company">XX 互联网公司 · 产品部</div>
+                            </div>
+                            <div class="intern-date">2023.07 - 2023.09</div>
+                        </div>
+                        <p class="intern-desc">
+                            负责 B 端数据产品功能迭代，参与用户调研与需求分析。
+                            独立设计并上线数据导出功能模块，提升用户付费转化率 15%。
+                            积累了 B 端产品需求管理与数据分析经验。
+                        </p>
+                        <div class="intern-tags">
+                            <span class="intern-tag">B 端产品</span>
+                            <span class="intern-tag">数据分析</span>
+                            <span class="intern-tag">功能迭代</span>
+                            <span class="intern-tag">用户调研</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目经历 -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">项目经历</h2>
+                    <p class="section-desc">从 0 到 1 的 AI 产品实践</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card featured fade-in">
+                        <div class="project-image">🤖</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">校园智能助手 — 毕业设计项目</h3>
+                                <a href="#" class="project-link">查看详情 →</a>
+                            </div>
+                            <p class="project-desc">
+                                基于大语言模型的校园智能助手，支持课程查询、校历提醒、食堂推荐、
+                                教务问答等多场景服务。整合 RAG 技术连接校园数据库，提供准确、及时的信息服务。
+                            </p>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <div class="project-stat-value">5+</div>
+                                    <div class="project-stat-label">服务场景</div>
+                                </div>
+                                <div class="project-stat">
+                                    <div class="project-stat-value">92%</div>
+                                    <div class="project-stat-label">问答准确率</div>
+                                </div>
+                                <div class="project-stat">
+                                    <div class="project-stat-value">500+</div>
+                                    <div class="project-stat-label">内测用户</div>
+                                </div>
+                            </div>
+                            <div class="project-tags">
+                                <span class="project-tag">LLM / RAG</span>
+                                <span class="project-tag">LangChain</span>
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">FastAPI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <div class="project-image">✍️</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">AI 写作助手</h3>
+                                <a href="#" class="project-link">查看详情 →</a>
+                            </div>
+                            <p class="project-desc">
+                                基于 GPT-4 的写作辅助工具，支持文章续写、润色、改写等功能。
+                                独立完成产品设计、Prompt 调优与用户测试。
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">GPT-4</span>
+                                <span class="project-tag">Prompt 工程</span>
+                                <span class="project-tag">产品设计</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <div class="project-image">📊</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">数据分析可视化平台</h3>
+                                <a href="#" class="project-link">查看详情 →</a>
+                            </div>
+                            <p class="project-desc">
+                                课程项目：可视化数据分析平台，支持拖拽式图表生成与数据报表导出。
+                                负责整体产品设计与前端开发。
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">ECharts</span>
+                                <span class="project-tag">Vue.js</span>
+                                <span class="project-tag">产品设计</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <div class="project-image">🎮</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">智能推荐系统</h3>
+                                <a href="#" class="project-link">查看详情 →</a>
+                            </div>
+                            <p class="project-desc">
+                                课程项目：基于协同过滤与深度学习的混合推荐算法，
+                                应用于电影推荐场景。AUC 达到 0.89。
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">推荐算法</span>
+                                <span class="project-tag">PyTorch</span>
+                                <span class="project-tag">深度学习</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 获奖荣誉 -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">获奖荣誉</h2>
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🏆</div>
+                        <div class="award-info">
+                            <h4>校级一等奖学金</h4>
+                            <p>2023、2024 年度</p>
+                        </div>
+                    </div>
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🥈</div>
+                        <div class="award-info">
+                            <h4>挑战杯省级银奖</h4>
+                            <p>2024 年 · AI 创新赛道</p>
+                        </div>
+                    </div>
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🏅</div>
+                        <div class="award-info">
+                            <h4>ACM 校赛铜奖</h4>
+                            <p>2023 年度算法竞赛</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 证书认证 -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-number">06</span>
+                    <h2 class="section-title">证书认证</h2>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">📜</div>
+                        <div class="cert-info">
+                            <h4> PMP 项目管理</h4>
+                            <p>项目管理协会 (PMI)</p>
+                        </div>
+                    </div>
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">🤖</div>
+                        <div class="cert-info">
+                            <h4>阿里云 AI 产品经理</h4>
+                            <p>认证证书</p>
+                        </div>
+                    </div>
+                    <div class="cert-card fade-in">
+                        <div class="cert-icon">💻</div>
+                        <div class="cert-info">
+                            <h4>计算机二级</h4>
+                            <p>Python 语言</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-section fade-in">
+                    <div class="contact-header">
+                        <h2 class="contact-title">联系我</h2>
+                        <p class="contact-subtitle">期待与您交流 AI 产品心得，或者合作机会</p>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-label">电子邮件</div>
+                            <div class="contact-value"><a href="mailto:your.email@example.com">your.email@example.com</a></div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-label">微信</div>
+                            <div class="contact-value">YourWeChat</div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-label">领英</div>
+                            <div class="contact-value"><a href="#">linkedin.com/in/you</a></div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-label">位置</div>
+                            <div class="contact-value">北京 · 中国</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-text">© 2025 AI 产品经理 · 应届毕业生</div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="GitHub">🐙</a>
+                    <a href="#" class="social-link" title="掘金">✍️</a>
+                    <a href="#" class="social-link" title="知乎">📚</a>
+                    <a href="#" class="social-link" title="微信">💬</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 80);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 技能条动画
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const parent = entry.target.closest('.skill-bar');
+                    const percent = parent.querySelector('.skill-bar-percent').textContent;
+                    entry.target.style.width = percent;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // 导航栏滚动效果
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
